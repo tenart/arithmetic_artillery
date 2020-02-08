@@ -1,0 +1,719 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Arithmetic Artillery</title>
+        <link href="css/reset.css" rel="stylesheet" type="text/css">
+        <link href="css/style.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <div id="welcome" class="screen_wrap">
+            <table id="intro">
+                <tr>
+                    <td><img id="logo" src="img/logo1024.png"></td>
+                    <td>
+                        <h2>WELCOME TO</h2>
+                        <h1>ARITHMETIC ARTILLERY</h1>
+                        <p>Arithmetic Artillery is a fun turn-based mathematic game where you solve math equations to stay one step ahead of the enemy.</p>
+                        <br>
+                        <p>To play, create a new match or look for an existing one.</p>
+                    </td>
+                </tr>
+            </table>
+
+            <table id="create">
+                <tr>
+                    <td colspan="2">
+                        <h2>GIVE YOURSELF A COOL NICKNAME</h2>
+                        <input id="name" type="text" maxlength="16">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="game_split">
+                        <h2>CREATE A GAME</h2>
+                        <input id="createID" type="text" maxlength="32" placeholder="Session ID">
+                        <!--
+                        <div class="size" id="small">
+                            <img src="img/small512.png">
+                            <p>8 &times; 8</p>
+                        </div>
+                        -->
+                        <div class="size active" id="big">
+                            <img src="img/big512.png">
+                            <p>16 &times; 16</p>
+                        </div>
+                        <button id="create_game">CREATE GAME</button>
+                    </td>
+                    <td class="game_split">
+                        <h2>FIND A GAME</h2>
+                        <input id="findID" type="text" maxlength="32" placeholder="Session ID">
+                        <table id="search_result">
+                            <tr>
+                                <th>Session Creator</th>
+                                <th>Size</th>
+                            </tr>
+                            <tr>
+                                <td id="result_name">No Result</td>
+                                <td id="result_size">×</td>
+                            </tr>
+                        </table>
+                        <button id="find_game">FIND GAME</button>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+        <div id="game_board" class="screen_wrap">
+            <div id="mode_indicator" class="gui">
+                <div id="mode_frame"></div>
+                <div class="modes" id="standby"></div>
+                <div class="modes" id="shoot"></div>
+                <div class="modes" id="move"></div>
+            </div>
+            <div id="hud_top" class="gui">
+                <div id="name1" class="name_bar">
+                    <div id="indicator1" class="turn_ind"></div>
+                    <h2>PLAYER 1</h2>
+                    <div class="health_container">
+                        <div class="health_progress"></div>
+                    </div>
+                </div>
+                <div id="name2" class="name_bar">
+                    <div id="indicator2" class="turn_ind"></div>
+                    <h2>PLAYER 2</h2>
+                    <div class="health_container">
+                        <div class="health_progress"></div>
+                    </div>
+                </div>
+                <div id="clock">
+                    <p>30</p>
+                </div>
+            </div>
+
+            <div id="board">
+                <div id="shadow"></div>
+                <table id="grid">
+                      <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+                <div id="reticule">
+                    <div id="target_spline">
+                    </div>
+                    <div id="target_info">
+                        <p id="target_x"></p>
+                        <p id="target_y"></p>
+                    </div>
+                </div>
+                <div id="x_rule" class="ruler">
+                    <p>0</p>
+                    <p>1</p>
+                    <p>2</p>
+                    <p>3</p>
+                    <p>4</p>
+                    <p>5</p>
+                    <p>6</p>
+                    <p>7</p>
+                    <p>8</p>
+                    <p>9</p>
+                    <p>10</p>
+                    <p>11</p>
+                    <p>12</p>
+                    <p>13</p>
+                    <p>14</p>
+                    <p>15</p>
+                </div>
+                <div id="y_rule" class="ruler">
+                    <p>15</p>
+                    <p>14</p>
+                    <p>13</p>
+                    <p>12</p>
+                    <p>11</p>
+                    <p>10</p>
+                    <p>9</p>
+                    <p>8</p>
+                    <p>7</p>
+                    <p>6</p>
+                    <p>5</p>
+                    <p>4</p>
+                    <p>3</p>
+                    <p>2</p>
+                    <p>1</p>
+                    <p>0</p>
+                </div>
+                <div id="boatbox1" class="collision">
+                    <!--
+                    <div class="boat_1 boat_layer"></div>
+                    <div class="boat_2_red boat_layer"></div>
+                    <div class="boat_3 boat_layer"></div>
+                    <div class="boat_4 boat_layer"></div>
+                    <div class="boat_5 boat_layer"></div>
+                    <div class="boat_vert"></div>
+                    <div class="boat_vert2"></div>
+                    -->
+                    <!--
+                    <div class="boat_sprite">
+                        <div class="boat_bow_left1 slant"></div>
+                        <div class="boat_bow_right1 slant"></div>
+                        <div class="boat_bow_left2 slant"></div>
+                        <div class="boat_bow_right2 slant"></div>
+                        <div class="boat_side_left side"></div>
+                        <div class="boat_side_right side"></div>
+                        <div class="boat_stern_left1 slant"></div>
+                        <div class="boat_stern_right1 slant"></div>
+                        <div class="boat_stern_left2 slant"></div>
+                        <div class="boat_stern_right2 slant"></div>
+                        <div class="boat_deck"></div>
+                        <div class="boat_roof"></div>
+                        <div class="stackN smokestack"></div>
+                        <div class="stackS smokestack"></div>
+                        <div class="stackE smokestack"></div>
+                        <div class="stackW smokestack"></div>
+                    </div>
+                    -->
+                    <div class="boat_model">
+                        <div class="boat_shadow"></div>
+                        <div class="boat_hull_wrap">
+                            <div class="boat_hull">
+                                <div class="side1 hull"></div>
+                                <div class="side2 hull"></div>
+                                <div class="side3 hull"></div>
+                                <div class="side4 hull"></div>
+                                <div class="side5 hull"></div>
+                                <div class="side6 hull"></div>
+                                <div class="side7 hull"></div>
+                                <div class="side8 hull"></div>
+                            </div>
+                        </div>
+                        <div class="boat_deck2"></div>
+                        <div class="boat_vertical"></div>
+                        <div class="boat_decka"></div>
+                        <div class="boat_deckb"></div>
+                    </div>
+                        
+                    <div id="dind_1" class="boat_dir_ind boat_layer"></div>
+                    <div id="ind_1" class="boat_vert_ind"></div>
+                </div>
+                <div id="boatbox2" class="collision">
+                    <!--
+                    <div class="boat_1 boat_layer"></div>
+                    <div class="boat_2_blue boat_layer"></div>
+                    <div class="boat_3 boat_layer"></div>
+                    <div class="boat_4 boat_layer"></div>
+                    <div class="boat_5 boat_layer"></div>
+                    <div class="boat_vert"></div>
+                    <div class="boat_vert2"></div>
+                    -->
+                    <!--
+                    <div class="boat_sprite">
+                        <div class="boat_bow_left1 slant"></div>
+                        <div class="boat_bow_right1 slant"></div>
+                        <div class="boat_bow_left2 slant"></div>
+                        <div class="boat_bow_right2 slant"></div>
+                        <div class="boat_side_left side"></div>
+                        <div class="boat_side_right side"></div>
+                        <div class="boat_stern_left1 slant"></div>
+                        <div class="boat_stern_right1 slant"></div>
+                        <div class="boat_stern_left2 slant"></div>
+                        <div class="boat_stern_right2 slant"></div>
+                        <div class="boat_deck"></div>
+                        <div class="boat_roof"></div>
+                        <div class="stackN smokestack"></div>
+                        <div class="stackS smokestack"></div>
+                        <div class="stackE smokestack"></div>
+                        <div class="stackW smokestack"></div>
+                    </div>
+                    -->
+                    <div class="boat_model">
+                        <div class="boat_shadow"></div>
+                        <div class="boat_hull_wrap">
+                            <div class="boat_hull">
+                                <div class="side1 hull"></div>
+                                <div class="side2 hull"></div>
+                                <div class="side3 hull"></div>
+                                <div class="side4 hull"></div>
+                                <div class="side5 hull"></div>
+                                <div class="side6 hull"></div>
+                                <div class="side7 hull"></div>
+                                <div class="side8 hull"></div>
+                            </div>
+                        </div>
+                        <div class="boat_deck2"></div>
+                        <div class="boat_vertical"></div>
+                        <div class="boat_decka"></div>
+                        <div class="boat_deckb"></div>
+                    </div>
+                    <div id="dind_2" class="boat_dir_ind boat_layer"></div>
+                    <div id="ind_2" class="boat_vert_ind"></div>
+                </div>
+                <div id="rock1" class="rock">
+                    <div class="rockN"></div>
+                    <div class="rockE"></div>
+                    <div class="rockW"></div>
+                    <div class="rockS"></div>
+                    <div class="slantN"></div>
+                    <div class="slantE"></div>
+                    <div class="slantW"></div>
+                    <div class="slantS"></div>
+                </div>
+                <div id="rock2" class="rock">
+                    <div class="rockN"></div>
+                    <div class="rockE"></div>
+                    <div class="rockW"></div>
+                    <div class="rockS"></div>
+                    <div class="slantN"></div>
+                    <div class="slantE"></div>
+                    <div class="slantW"></div>
+                    <div class="slantS"></div>
+                </div>
+                <div id="rock3" class="rock">
+                    <div class="rockN"></div>
+                    <div class="rockE"></div>
+                    <div class="rockW"></div>
+                    <div class="rockS"></div>
+                    <div class="slantN"></div>
+                    <div class="slantE"></div>
+                    <div class="slantW"></div>
+                    <div class="slantS"></div>
+                </div>
+                <div id="rock4" class="rock">
+                    <div class="rockN"></div>
+                    <div class="rockE"></div>
+                    <div class="rockW"></div>
+                    <div class="rockS"></div>
+                    <div class="slantN"></div>
+                    <div class="slantE"></div>
+                    <div class="slantW"></div>
+                    <div class="slantS"></div>
+                </div>
+                <div id="rock5" class="rock">
+                    <div class="rockN"></div>
+                    <div class="rockE"></div>
+                    <div class="rockW"></div>
+                    <div class="rockS"></div>
+                    <div class="slantN"></div>
+                    <div class="slantE"></div>
+                    <div class="slantW"></div>
+                    <div class="slantS"></div>
+                </div>
+                <div id="rock6" class="rock">
+                    <div class="rockN"></div>
+                    <div class="rockE"></div>
+                    <div class="rockW"></div>
+                    <div class="rockS"></div>
+                    <div class="slantN"></div>
+                    <div class="slantE"></div>
+                    <div class="slantW"></div>
+                    <div class="slantS"></div>
+                </div>
+                <div id="rock7" class="rock">
+                    <div class="rockN"></div>
+                    <div class="rockE"></div>
+                    <div class="rockW"></div>
+                    <div class="rockS"></div>
+                    <div class="slantN"></div>
+                    <div class="slantE"></div>
+                    <div class="slantW"></div>
+                    <div class="slantS"></div>
+                </div>
+                <div id="rock8" class="rock">
+                    <div class="rockN"></div>
+                    <div class="rockE"></div>
+                    <div class="rockW"></div>
+                    <div class="rockS"></div>
+                    <div class="slantN"></div>
+                    <div class="slantE"></div>
+                    <div class="slantW"></div>
+                    <div class="slantS"></div>
+                </div>
+                <div id="tracer">
+                    <div id="tracer_sprite"></div>
+                </div>
+                <div id="shell">
+                    <div id="shell_sprite">
+                        <div id="shell_vert"></div>
+                        <div id="shell_vert2"></div>
+                        <div id="shell_vert2b"></div>
+                        <div id="shell_vert3"></div>
+                        <div id="shell_vert4"></div>
+                        <div id="shell_vert5"></div>
+                        <div id="shell_vert6"></div>
+                    </div>
+                </div>
+                <div id="flash">
+                    <div id="flash_sprite" class="flash_img">
+                        <div id="flash_vert1" class="flash_img"></div>
+                        <div id="flash_vert2" class="flash_img"></div>
+                        <div id="flash_vert3" class="flash_img"></div>
+                    </div>
+                </div>
+                <div id="splash">
+                    <div class="splash_sprite"></div>
+                </div>
+                <div id="splash2">
+                    <div class="splash_sprite"></div>
+                </div>
+                <div id="splash_vert"></div>
+                <div id="splash_vert2"></div>
+
+            </div>
+
+            <div id="enemy_display" class="gui">
+                <h2>THE ENEMY'S EQUATION:</h2>
+                <h1 id="enemyeq">-</h1>
+                <p><br></p>
+                <h2>THE ENEMY'S HEADING:</h2>
+                <h1 id="enemydir">-</h1>
+            </div>
+
+            <!--
+            <div id="orbit_control">
+                <p id="orbx">X: </p>
+                <p id="orby">Y: </p>
+                <div id="mock_plane">
+                    <h2 id="mockN">N</h2>
+                    <h2 id="mockE">E</h2>
+                    <h2 id="mockW">W</h2>
+                    <h2 id="mockS">S</h2>
+                </div>
+                <input class="slider" type="range" min="0" max="80" id="vertical" value="55">
+                <input class="slider" type="range" min="-90" max="180" id="horizontal" value="45">
+            </div>
+            -->
+
+            <div id="debug" class="gui">
+                <p>DEBUG INFO</p>
+                <p>AriArt</p>
+                <p id="debug_cx">cursor x: </p>
+                <p id="debug_cy">cursor y: </p>
+                <p id="debug_md">mouse down: </p>
+                <p id="debug_1x">player1 x: </p>
+                <p id="debug_1y">player1 y: </p>
+                <p id="debug_1dir">player1 direction: </p>
+                <p id="debug_2x">player2 x: </p>
+                <p id="debug_2y">player2 y: </p>
+                <p id="debug_2dir">player2 direction: </p>
+                <p id="debug_mode">mode: </p>
+            </div>
+
+            <table id="input" class="gui">
+                <tr>
+                    <td>
+                        <div id="heading_container">
+                            <button id="N">N</button>
+                            <button id="E">E</button>
+                            <button id="W">W</button>
+                            <button id="S">S</button>
+                        </div>
+                    </td>
+                    <td><input type="text" id="equation"> = <input type="text" id="result" readonly></td>
+                    <td><button id="submit">GO</button></td>
+
+                </tr>
+            </table>
+
+        </div>
+    </body>
+    <script src="https://www.gstatic.com/firebasejs/3.7.2/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyB03o49ygnT0uoBFM4p7dTb1WF55lpmejQ",
+            authDomain: "arithmetic-artillery.firebaseapp.com",
+            databaseURL: "https://arithmetic-artillery.firebaseio.com",
+            storageBucket: "arithmetic-artillery.appspot.com",
+            messagingSenderId: "1023837698137"
+        };
+        firebase.initializeApp(config);
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/3.10.0/math.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/howler.js/2.0.3/howler.min.js"></script>
+    <script src="js/script.js"></script>
+</html>
